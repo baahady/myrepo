@@ -3,10 +3,9 @@
 	socket.on('connect',function(){
 		console.log('connected to server');
 
-		socket.emit('createdEmail',{
-			from: 'bahram@bahram.com',
-			text: 'text from user',
-			createdAt: 123
+		socket.emit('createMessage',{
+			from: 'Bahram',
+			text: 'hey in chat kar mikone'
 		});
 	});
 
@@ -14,6 +13,6 @@
 		console.log('disconnected from server');
 	});
 
-	socket.on('newEmail',function(email){
-		console.log('new email',email);
+	socket.on('newMessage',function(message){
+		console.log('newMessage',message);
 	});
