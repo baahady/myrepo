@@ -19,13 +19,29 @@ io.on('connection',(socket)=>{
 	console.log('user');
 
 	socket.emit('newMessage',{
-		from: 'Ali',
-		text: 'salam va salam',
-		createdAt: 123
+		from: 'Admin',
+		text: 'welcome to chatroom',
+		createdAt: new Date().getTime()
+	});
+
+	socket.broadcast.emit('newMessage',{
+		from: 'Admin',
+		text: 'new user joind chatroom',
+		createdAt: new Date().getTime()
 	});
 
 	socket.on('createMessage',(message)=>{
 		console.log('createMessage',message);
+		io.emit('newMessage',{
+			from: message.from,
+			text:message.text,
+			createdAt: new Date().getTime()
+		});
+		// socket.broadcast.emit('newMessage',{
+		// 	from: message.from,
+		// 	text: message.text,
+		// 	createdAt: new Date().getTime()
+		// });
 	});
 
 	socket.on('disconnect',()=>{
