@@ -11,3 +11,10 @@
 	socket.on('newMessage',function(message){
 		console.log('newMessage',message);
 	});
+
+	socket.emit('createMessage',{
+		from:'bahram',
+		text: 'Im Alive'
+	},function(data){
+		console.log('got it: ',data);
+	});
